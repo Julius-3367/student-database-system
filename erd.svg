@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simple ER diagram (SVG) for Student Records schema -->
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <style>
+    .box { fill:#f8f9fa; stroke:#333; stroke-width:1.5px; }
+    .title { font: bold 14px sans-serif; }
+    .field { font: 12px sans-serif; }
+    .fk { stroke:#aa0000; stroke-width:1.2px; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#aa0000" />
+    </marker>
+  </defs>
+
+  <!-- departments -->
+  <rect x="40" y="40" width="220" height="80" class="box"/>
+  <text x="150" y="60" text-anchor="middle" class="title">departments</text>
+  <text x="60" y="80" class="field">PK department_id</text>
+  <text x="60" y="98" class="field">dept_code, name</text>
+
+  <!-- courses -->
+  <rect x="320" y="40" width="260" height="100" class="box"/>
+  <text x="450" y="60" text-anchor="middle" class="title">courses</text>
+  <text x="340" y="84" class="field">PK course_id</text>
+  <text x="340" y="102" class="field">FK department_id, course_code, title</text>
+
+  <!-- instructors -->
+  <rect x="320" y="170" width="260" height="100" class="box"/>
+  <text x="450" y="190" text-anchor="middle" class="title">instructors</text>
+  <text x="340" y="214" class="field">PK instructor_id</text>
+  <text x="340" y="232" class="field">FK department_id, email</text>
+
+  <!-- classes -->
+  <rect x="640" y="40" width="260" height="100" class="box"/>
+  <text x="770" y="60" text-anchor="middle" class="title">classes</text>
+  <text x="660" y="84" class="field">PK class_id</text>
+  <text x="660" y="102" class="field">FK course_id, FK instructor_id, term, section</text>
+
+  <!-- students -->
+  <rect x="40" y="260" width="300" height="120" class="box"/>
+  <text x="190" y="280" text-anchor="middle" class="title">students</text>
+  <text x="60" y="312" class="field">PK student_id</text>
+  <text x="60" y="330" class="field">student_number, name, email</text>
+
+  <!-- addresses -->
+  <rect x="360" y="310" width="260" height="80" class="box"/>
+  <text x="490" y="330" text-anchor="middle" class="title">addresses</text>
+  <text x="380" y="354" class="field">PK student_id (1-1)</text>
+
+  <!-- enrollments -->
+  <rect x="680" y="200" width="320" height="80" class="box"/>
+  <text x="840" y="220" text-anchor="middle" class="title">enrollments</text>
+  <text x="700" y="246" class="field">PK (student_id, class_id) (M-M)</text>
+
+  <!-- course_instructors -->
+  <rect x="680" y="320" width="320" height="80" class="box"/>
+  <text x="840" y="340" text-anchor="middle" class="title">course_instructors</text>
+  <text x="700" y="366" class="field">PK (course_id,instructor_id)</text>
+
+  <!-- FK lines -->
+  <line x1="260" y1="80" x2="320" y2="80" class="fk" /> <!-- departments -> courses -->
+  <line x1="260" y1="80" x2="420" y2="190" class="fk" /> <!-- departments -> instructors -->
+  <line x1="580" y1="90" x2="640" y2="90" class="fk" /> <!-- courses -> classes -->
+  <line x1="580" y1="190" x2="640" y2="190" class="fk" /> <!-- instructors -> classes -->
+  <line x1="340" y1="380" x2="360" y2="350" class="fk" /> <!-- students -> addresses (1-1) -->
+  <line x1="420" y1="320" x2="680" y2="240" class="fk" /> <!-- students -> enrollments -->
+  <line x1="720" y1="240" x2="720" y2="240" class="fk" />
+
+  <!-- labels -->
+  <text x="200" y="70" class="field" fill="#333" text-anchor="middle">1</text>
+  <text x="380" y="48" class="field" fill="#333">1..*</text>
+
+</svg>
