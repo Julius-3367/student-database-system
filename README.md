@@ -6,7 +6,7 @@ Files added:
 
 - `student_records_schema.sql` — Complete SQL file with `CREATE DATABASE`, `CREATE TABLE` statements, relationships (1-1, 1-M, M-M), constraints (PRIMARY KEY, FOREIGN KEY, UNIQUE, NOT NULL) and a sample view.
 - `migrations/` — migration-friendly files split into ordered SQL files (create database, departments/instructors/courses, students/addresses, classes/enrollments/course_instructors).
-- `student_records_seed.sql` — sample data (Kenyan names) to populate the database.
+- `student_records_seed.sql` — sample data to populate the database.
 - `populate_db.sh` — small script to apply migrations and seed the DB (prompts for DB password interactively).
 - `Makefile` — helper to run migrations and seed (uses `mysql` CLI; it will prompt for password).
 - `erd.svg` — a vector ER diagram showing tables and relationships.
